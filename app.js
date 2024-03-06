@@ -1,67 +1,27 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const {connection} = require("./config/db");
+import express from "express";
+import morgan from "morgan";
+import { connection } from "./config/db.js";
+import router from "./router/router.js";
 
-app = express();
-const port = 3000;
+const app = express();
+// controlamos los get and post
+app.use(morgan("dev"));
 
-app.listen(port, (req, res) => {
-  console.log("PORT ON");
+// escuchamos un puerto
+app.listen(3000, (req, res) => {
+  console.log("Port on 3000");
 });
 
-// Configurar EJS como motor de vistas
-app.set("view engine", "ejs");
-
-// Middleware para analizar el cuerpo de las solicitudes
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Conectar a la base de datos
-connection.connect((error) => {
-  if (error) {
-    console.error("Error al conectar a la base de datos:", error);
+// creamos la conexion a la base de datos
+connection.connect((err) => {
+  if (err) {
+    console.log(err);
   } else {
-    console.log("Conexión exitosa a la base de datos");
+    console.log("Conexión a la base de datos exitosa");
   }
 });
 
-// ruta principal
-app.get("/", (req, res) => {
-  let mensaje = "";
-  res.render("index", { mensaje });
-});
-
-// ruta del login index.js
-app.post("/login-admin", (req, res) => {
-  // tomamos los datos del formulario
-  const usuario = req.body.usuario;
-  const contraseña = req.body.contrasena;
-
-  //   validamos los campos no vacios
-  if (usuario && contraseña) {
-    // validamos el user
-    if (usuario === "brayan" && contraseña === "12345") {
-      res.render("register-user");
-    } else {
-      mensaje = "Datos invalidos";
-      res.render("index", { mensaje });
-    }
-  } else {
-    mensaje = "Ingrese todos los datos";
-    res.render("index", { mensaje });
-  }
-});
-
-// ruta del login register-user.js
-app.post("/register-user", (req, res) => {
-  const nombre = req.body.nombre;
-  const apellido = req.body.apellido;
-  const email = req.body.email;
-
-  //   validamos los campos no vacios
-  if (nombre && apellido && email) {
-    console.log("melo");
-  } else {
-    mensaje = "Ingrese todos los datos";
-    res.render("register-user");
-  }
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// usamos las rutas
+app.use("/api", router);
