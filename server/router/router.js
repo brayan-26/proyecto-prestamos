@@ -5,7 +5,8 @@ import {
   registerPres,
   getPrestamos,
   getPresUser,
-  ganancias
+  ganancias, 
+  actualizarEsta
 } from "../controller/auth.controller.js";
 
 const router = Router();

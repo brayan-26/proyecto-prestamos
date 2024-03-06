@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function RegisterPres() {
   const { register, handleSubmit } = useForm();
-  const { registerPrestamos } = useAuth();
+  const { registerPres } = useAuth();
   const [mensaje, setMensaje] = useState(null);
   const navegate = useNavigate();
 
   const onSubmit = handleSubmit(async (values) => {
     try {
-      const results = await registerPrestamos(values);
+      const results = await registerPres(values);
       if (results.resultsData) {
         setMensaje(results.mensaje);
       }
@@ -48,8 +48,11 @@ function RegisterPres() {
         </select>
 
         <button type="submit">register prestamo</button>
-      </form>
+      </form>  
       {mensaje && <p>{mensaje}</p>}
+      <br />
+      <Link to="/mostrarPrestamos">Ver todos los prestamos</Link> <br /> <br />
+      <Link to="/obtenerCedula">Ver prestamos por cedula</Link>
     </div>
   );
 }

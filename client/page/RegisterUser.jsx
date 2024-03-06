@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link} from "react-router-dom";
 
 function RegisterUser() {
   const { register, handleSubmit } = useForm();
@@ -39,6 +39,7 @@ function RegisterUser() {
         <button type="submit">register user</button>
       </form>
       {mensaje && <p>{mensaje}</p>}
+      <Link to="/registerPrestamos">Registrar Préstamos</Link>
     </div>
   );
 }

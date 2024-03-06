@@ -1,5 +1,12 @@
 import { createContext, useState, useContext } from "react";
-import { login, register, registerPrestamos } from "../api/auth";
+import {
+  login,
+  register,
+  registerPrestamos,
+  PrestamosUser,
+  PrestamosaAll,
+  ganancias,
+} from "../api/auth";
 
 export const AuthContext = createContext();
 
@@ -41,9 +48,58 @@ export const AuthProvider = ({ children }) => {
       }
     }
   };
-  const registerPrestamos = async (values) => {
+  const registerPres = async (values) => {
     try {
-      const results = await register(values);
+      const results = await registerPrestamos(values);
+      return { resultsData: results.status, mensaje: results.data.mensaje };
+    } catch (error) {
+      if (error.response) {
+        const { status, data } = error.response;
+        return { statusCode: status, responseData: data };
+      } else {
+        console.log(error);
+      }
+    }
+  };
+  const ObtenerCedula = async (values) => {
+    try {
+      const results = await PrestamosUser(values);
+      const prestamosData = results.data.info;
+      return {
+        resultsData: results.status,
+        mensaje: results.data.mensaje,
+        prestamosData: prestamosData,
+      };
+    } catch (error) {
+      if (error.response) {
+        const { status, data } = error.response;
+        return { statusCode: status, responseData: data };
+      } else {
+        console.log(error);
+      }
+    }
+  };
+  const ObtenerPresta = async () => {
+    try {
+      const results = await PrestamosaAll();
+      const prestamosData = results.data.info;
+      return {
+        resultsData: results.status,
+        mensaje: results.data.mensaje,
+        prestamosData: prestamosData,
+      };
+    } catch (error) {
+      if (error.response) {
+        const { status, data } = error.response;
+        return { statusCode: status, responseData: data };
+      } else {
+        console.log(error);
+      }
+    }
+  };
+  const allganacias = async (values) => {
+    try {
+      const results = await ganancias(values);
       return { resultsData: results.status, mensaje: results.data.mensaje };
     } catch (error) {
       if (error.response) {
@@ -59,7 +115,10 @@ export const AuthProvider = ({ children }) => {
       value={{
         ingresar,
         registrarUser,
-        registerPrestamos,
+        registerPres,
+        ObtenerCedula,
+        ObtenerPresta,
+        allganacias,
         user,
       }}
     >

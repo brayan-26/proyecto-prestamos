@@ -23,20 +23,24 @@ function PageLogin() {
     }
   });
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div className="login-container">
+      <form className="login-form" onSubmit={onSubmit}>
         <input
+          className="login-input"
           type="text"
           autoComplete="off"
           {...register("nombre", { required: true })}
         />
         <input
+          className="login-input"
           type="password"
           {...register("contraseña", { required: true })}
         />
-        <button type="submit">login</button>
+        <button className="login-button" type="submit">
+          login
+        </button>
       </form>
-      {mensaje && <p>{mensaje}</p>}
+      {mensaje && <p className="login-message">{mensaje}</p>}
     </div>
   );
 }

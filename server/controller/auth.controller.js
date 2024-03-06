@@ -5,6 +5,8 @@ import {
   numberPresta,
   obtenerPres,
   obtenerPresUser,
+  obtenerPresTrue,
+  actualizarEstado,
 } from "../models/user.models.js";
 
 export const login = (req, res) => {
@@ -73,9 +75,9 @@ export const registerPres = async (req, res) => {
 
 export const getPrestamos = async (req, res) => {
   try {
-    const results = await obtenerPres();
+    const results = await obtenerPresTrue();
     if (results.length > 0) {
-      res.status(200).json({ resultados: results });
+      res.status(200).json({ mensaje: "Todos los prestamos", info: results });
     } else {
       res.status(401).json({ mensaje: "NO hay tiene prestamos" });
     }
@@ -90,7 +92,9 @@ export const getPresUser = async (req, res) => {
     const results = await obtenerPresUser(cedula);
 
     if (results[0].length > 0) {
-      res.status(200).json({ mensaje: "El usuario tiene prestamos" });
+      res
+        .status(200)
+        .json({ mensaje: "El usuario tiene prestamos", info: results[0] });
     } else {
       res.status(401).json({ mensaje: "El usuario NO tiene prestamos" });
     }
@@ -118,10 +122,22 @@ export const ganancias = async (req, res) => {
       const gananciaTotal = gananciasPorPrestamo.reduce(
         (total, ganancia) => total + ganancia
       );
-      res.status(200).json({ mensaje: `Ganancias totales ${gananciaTotal}` });
+      res
+        .status(200)
+        .json({ mensaje: `Ganancias totales ${Math.round(gananciaTotal)}` });
     } else {
       res.status(401).json({ mensaje: "Aun no hay prestamos" });
     }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const actualizarEsta = async (req, res) => {
+  try {
+    const estado = req.body;
+    const results = await actualizarEstado(estado);
+    console.log(results);
   } catch (error) {
     console.log(error);
   }

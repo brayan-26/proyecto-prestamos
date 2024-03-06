@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PageLogin from "../page/PageLogin";
 import RegisterUser from "../page/RegisterUser";
 import RegisterPres from "../page/RegisterPres";
+import MostarCedula from "../page/MostarCedula";
+import PagePrestamos from "../page/PagePrestamos";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
           <Route path="/" element={<PageLogin />} />
           <Route path="/register" element={<RegisterUser />} />
           <Route path="/registerPrestamos" element={<RegisterPres />} />
+          <Route path="/obtenerCedula" element={<MostarCedula />} />
+          <Route path="/mostrarPrestamos" element={<PagePrestamos />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
