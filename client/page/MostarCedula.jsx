@@ -45,6 +45,9 @@ function MostarCedula() {
           <ul className="result-list">
             {prestamosData.map((prestamo, index) => (
               <li key={index} className="result-item">
+                <p>
+                  <strong>El número de ESTADOO 1 quiere decir que lo debe , 0 que ya lo pago</strong>
+                </p>
                 <p>ID: {prestamo.id}</p>
                 <p>Estado: {prestamo.estado_pago}</p>
                 <p>Cédula Usuario: {prestamo.cedula_usuario}</p>

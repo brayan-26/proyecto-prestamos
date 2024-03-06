@@ -26,12 +26,14 @@ function PageLogin() {
     <div className="login-container">
       <form className="login-form" onSubmit={onSubmit}>
         <input
+          placeholder="Cédula"
           className="login-input"
           type="text"
           autoComplete="off"
           {...register("nombre", { required: true })}
-        />
+          />
         <input
+          placeholder="Contraseña"
           className="login-input"
           type="password"
           {...register("contraseña", { required: true })}

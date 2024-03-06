@@ -29,31 +29,28 @@ function PagePrestamos() {
     obtenerDatosPrestamos();
   }, []);
 
-
   return (
     <div className="loan-info-container">
-  {gana && <p className="info-message">{gana}</p>}
-  <hr className="info-divider" />
-  {mensaje && <p className="info-message">{mensaje}</p>}
+      {gana && <p className="info-message">{gana}</p>}
+      <hr className="info-divider" />
+      {mensaje && <p className="info-message">{mensaje}</p>}
 
-  {prestamosData.length > 0 && (
-    <div className="loan-list-container">
-      <h2 className="loan-list-heading">Datos de préstamos:</h2>
-      <ul className="loan-list">
-        {prestamosData.map((prestamo, index) => (
-          <li key={index} className="loan-item">
-            <p>ID: {prestamo.id}</p>
-            <p>Cédula Usuario: {prestamo.cedula_usuario}</p>
-            <p>Monto Solicitado: {prestamo.monto_solicitado} pesos</p>
-            <button className="loan-button">Nada</button>
-            <hr className="loan-item-divider" />
-          </li>
-        ))}
-      </ul>
+      {prestamosData.length > 0 && (
+        <div className="loan-list-container">
+          <h2 className="loan-list-heading">Datos de préstamos:</h2>
+          <ul className="loan-list">
+            {prestamosData.map((prestamo, index) => (
+              <li key={index} className="loan-item">
+                <p>ID: {prestamo.id}</p>
+                <p>Cédula Usuario: {prestamo.cedula_usuario}</p>
+                <p>Monto Prestado: {prestamo.monto_solicitado} pesos</p>
+                <hr className="loan-item-divider" />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
-  )}
-</div>
-
   );
 }
 

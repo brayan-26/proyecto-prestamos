@@ -11,6 +11,7 @@ function RegisterPres() {
 
   const onSubmit = handleSubmit(async (values) => {
     try {
+      console.log(values)
       const results = await registerPres(values);
       if (results.resultsData) {
         setMensaje(results.mensaje);
@@ -41,19 +42,10 @@ function RegisterPres() {
           {...register("monto", { required: true })}
         />
 
-        <label>Fecha de Préstamo:</label>
-        <input
-          className="register-loan-input"
-          type="date"
-          {...register("fechaPrestamo", { required: true })}
-        />
-
-        <label>Fecha de Pago:</label>
-        <input
-          className="register-loan-input"
-          type="date"
-          {...register("fechaPago", { required: true })}
-        />
+        <select {...register("fechaPago", {required: true})}>
+          <option value="15">A 15 dias</option>
+          <option value="30">A 30 dias</option>
+        </select>
 
         <label>Interés:</label>
         <select

@@ -17,6 +17,7 @@ function App() {
           <Route path="/registerPrestamos" element={<RegisterPres />} />
           <Route path="/obtenerCedula" element={<MostarCedula />} />
           <Route path="/mostrarPrestamos" element={<PagePrestamos />} />
+          <Route path="/*" element={<p>paila manito</p>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
