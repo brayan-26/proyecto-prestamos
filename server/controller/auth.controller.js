@@ -46,9 +46,25 @@ export const registerUser = async (req, res) => {
 
 export const registerPres = async (req, res) => {
   try {
-    const { cedula, monto, fechaPrestamo, fechaPago, interes } = req.body;
-    const datos = [cedula, monto, fechaPrestamo, fechaPago, true, interes];
+    const { cedula, monto, fechaPago, interes } = req.body;
+    // Obtener la fecha de hoy
+    const fechaPrestamo = new Date();
 
+    // Formatear la fecha como una cadena en el formato deseado (por ejemplo, YYYY-MM-DD)
+    const fechaPrestamoFormateada = fechaPrestamo.toISOString().split("T")[0];
+    const total = fechaPrestamo.setDate(fechaPrestamo.getDate() + fechaPago);
+    console.log(fechaPago)
+    
+    const datos = [
+      cedula,
+      monto,
+      fechaPrestamoFormateada,
+      total,
+      true,
+      interes,
+    ];
+
+    console.log(datos)
     const resultsNumber = await numberPresta(cedula);
     const number = resultsNumber[0][0].total;
 
