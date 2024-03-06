@@ -24,27 +24,32 @@ function MostarCedula() {
     }
   });
 
-  
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input type="text" {...register("cedula", { required: true })} />
-        <button type="submit">Buscar</button>
+    <div className="search-container">
+      <form className="search-form" onSubmit={onSubmit}>
+        <input
+          className="search-input"
+          type="text"
+          {...register("cedula", { required: true })}
+        />
+        <button className="search-button" type="submit">
+          Buscar
+        </button>
       </form>
 
-      {mensaje && <p>{mensaje}</p>}
+      {mensaje && <p className="search-message">{mensaje}</p>}
 
       {prestamosData.length > 0 && (
-        <div>
-          <h2>Datos de préstamos:</h2>
-          <ul>
+        <div className="result-container">
+          <h2 className="result-heading">Datos de préstamos:</h2>
+          <ul className="result-list">
             {prestamosData.map((prestamo, index) => (
-              <li key={index}>
+              <li key={index} className="result-item">
                 <p>ID: {prestamo.id}</p>
-                <p>estado: {prestamo.estado_pago} </p>
-                <p>Cedula Usuario: {prestamo.cedula_usuario} </p>
+                <p>Estado: {prestamo.estado_pago}</p>
+                <p>Cédula Usuario: {prestamo.cedula_usuario}</p>
                 <p>Monto Solicitado: {prestamo.monto_solicitado} pesos</p>
-                <hr />
+                <hr className="result-divider" />
               </li>
             ))}
           </ul>

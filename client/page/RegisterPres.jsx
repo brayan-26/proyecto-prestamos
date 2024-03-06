@@ -23,23 +23,43 @@ function RegisterPres() {
     }
   });
   return (
-    <div>
-      cedula, monto, fechaPrestamo, fechaPago, interes
-      <form onSubmit={onSubmit}>
+    <div className="register-loan-container">
+      <form className="register-loan-form" onSubmit={onSubmit}>
+        <label>Cédula:</label>
         <input
+          className="register-loan-input"
           type="number"
           autoComplete="off"
           {...register("cedula", { required: true })}
         />
+
+        <label>Monto:</label>
         <input
+          className="register-loan-input"
           type="number"
           autoComplete="off"
           {...register("monto", { required: true })}
         />
-        <input type="date" {...register("fechaPrestamo", { required: true })} />
-        <input type="date" {...register("fechaPago", { required: true })} />
 
-        <select {...register("interes", { required: true })}>
+        <label>Fecha de Préstamo:</label>
+        <input
+          className="register-loan-input"
+          type="date"
+          {...register("fechaPrestamo", { required: true })}
+        />
+
+        <label>Fecha de Pago:</label>
+        <input
+          className="register-loan-input"
+          type="date"
+          {...register("fechaPago", { required: true })}
+        />
+
+        <label>Interés:</label>
+        <select
+          className="register-loan-select"
+          {...register("interes", { required: true })}
+        >
           {[...Array(100).keys()].map((index) => (
             <option key={index + 1} value={(index + 1).toString()}>
               {`${index + 1}%`}
@@ -47,12 +67,19 @@ function RegisterPres() {
           ))}
         </select>
 
-        <button type="submit">register prestamo</button>
-      </form>  
-      {mensaje && <p>{mensaje}</p>}
+        <button className="register-loan-button" type="submit">
+          Registrar Préstamo
+        </button>
+      </form>
+      {mensaje && <p className="register-loan-message">{mensaje}</p>}
       <br />
-      <Link to="/mostrarPrestamos">Ver todos los prestamos</Link> <br /> <br />
-      <Link to="/obtenerCedula">Ver prestamos por cedula</Link>
+      <Link to="/mostrarPrestamos" className="register-loan-link">
+        Ver todos los préstamos
+      </Link>
+      <br /> <br />
+      <Link to="/obtenerCedula" className="register-loan-link">
+        Ver préstamos por cédula
+      </Link>
     </div>
   );
 }

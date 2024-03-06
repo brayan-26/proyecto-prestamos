@@ -23,24 +23,34 @@ function RegisterUser() {
     }
   });
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
-          type="number"
-          autoComplete="off"
-          {...register("cedula", { required: true })}
-        />
-        <input
-          type="text"
-          autoComplete="off"
-          {...register("nombre", { required: true })}
-        />
-        <input type="text" {...register("apellido", { required: true })} />
-        <button type="submit">register user</button>
-      </form>
-      {mensaje && <p>{mensaje}</p>}
-      <Link to="/registerPrestamos">Registrar Préstamos</Link>
-    </div>
+    <div className="register-user-container">
+    <form className="register-user-form" onSubmit={onSubmit}>
+      <input
+        className="register-user-input"
+        type="number"
+        autoComplete="off"
+        {...register("cedula", { required: true })}
+        placeholder="Cédula"
+      />
+      <input
+        className="register-user-input"
+        type="text"
+        autoComplete="off"
+        {...register("nombre", { required: true })}
+        placeholder="Nombre"
+      />
+      <input
+        className="register-user-input"
+        type="text"
+        {...register("apellido", { required: true })}
+        placeholder="Apellido"
+      />
+      <button className="register-user-button" type="submit">Registrar Usuario</button>
+    </form>
+    {mensaje && <p className="register-user-message">{mensaje}</p>}
+    <Link to="/registerPrestamos" className="register-user-link">Registrar Préstamos</Link>
+  </div>
+  
   );
 }
 

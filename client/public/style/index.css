@@ -63,3 +63,249 @@ body {
   color: red;
   width: 100%; /* Ancho del 100% */
 }
+
+
+/* cedula buscar  */
+
+/* SearchStyles.css */
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .search-input {
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .search-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .search-message {
+    margin-top: 15px;
+    color: red;
+  }
+  
+  .result-container {
+    margin-top: 20px;
+  }
+  
+  .result-heading {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .result-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .result-item {
+    margin-bottom: 10px;
+  }
+  
+  .result-divider {
+    margin-top: 5px;
+    border: 1px solid #ccc;
+  }
+
+  
+  /* register user */
+/* RegisterUserStyles.css */
+
+.register-user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .register-user-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .register-user-input {
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px; /* Ancho fijo */
+  }
+  
+  .register-user-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 200px; /* Ancho fijo */
+  }
+  
+  .register-user-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .register-user-message {
+    margin-top: 15px;
+    color: red;
+  }
+  
+  .register-user-link {
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .register-user-link:hover {
+    text-decoration: underline;
+  }
+  
+
+  /*Esto es el registrar prestamo*/
+
+  /* RegisterLoanStyles.css */
+
+.register-loan-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .register-loan-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .register-loan-input {
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Ancho del 100% */
+  }
+  
+  .register-loan-select {
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Ancho del 100% */
+  }
+  
+  .register-loan-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Ancho del 100% */
+  }
+  
+  .register-loan-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .register-loan-message {
+    margin-top: 15px;
+    color: red;
+  }
+  
+  .register-loan-link {
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .register-loan-link:hover {
+    text-decoration: underline;
+  }
+  
+
+  /* este es el que sigue */
+
+.loan-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .info-message {
+    margin-top: 10px;
+    color: green; /* Color de mensaje */
+  }
+  
+  .info-divider {
+    width: 100%;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+  }
+  
+  .loan-list-container {
+    margin-top: 20px;
+  }
+  
+  .loan-list-heading {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff; /* Color del encabezado de la lista */
+  }
+  
+  .loan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .loan-item {
+    margin-bottom: 10px;
+  }
+  
+  .loan-button {
+    padding: 8px;
+    background-color: #007bff; /* Color del botón */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .loan-button:hover {
+    background-color: #0056b3; /* Color del botón al pasar el mouse */
+  }
+  
+  .loan-item-divider {
+    margin-top: 5px;
+    border: 1px solid #ccc;
+  }
+  

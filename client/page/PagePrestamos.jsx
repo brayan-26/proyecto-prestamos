@@ -31,30 +31,29 @@ function PagePrestamos() {
 
 
   return (
-    <div>
-      {gana && <p>{gana}</p>}
-      <hr />
-      {mensaje && <p>{mensaje}</p>}
+    <div className="loan-info-container">
+  {gana && <p className="info-message">{gana}</p>}
+  <hr className="info-divider" />
+  {mensaje && <p className="info-message">{mensaje}</p>}
 
-      {prestamosData.length > 0 && (
-        <div>
-          <h2>Datos de préstamos:</h2>
-          <ul>
-            {prestamosData.map((prestamo, index) => (
-              <li key={index}>
-                <p>ID: {prestamo.id}</p>
-                <p>Cedula Usuario: {prestamo.cedula_usuario} </p>
-                <p>Monto Solicitado: {prestamo.monto_solicitado} pesos</p>
-                <button>nada 
-                  
-                </button>
-                <hr />
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+  {prestamosData.length > 0 && (
+    <div className="loan-list-container">
+      <h2 className="loan-list-heading">Datos de préstamos:</h2>
+      <ul className="loan-list">
+        {prestamosData.map((prestamo, index) => (
+          <li key={index} className="loan-item">
+            <p>ID: {prestamo.id}</p>
+            <p>Cédula Usuario: {prestamo.cedula_usuario}</p>
+            <p>Monto Solicitado: {prestamo.monto_solicitado} pesos</p>
+            <button className="loan-button">Nada</button>
+            <hr className="loan-item-divider" />
+          </li>
+        ))}
+      </ul>
     </div>
+  )}
+</div>
+
   );
 }
 
