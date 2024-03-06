@@ -5,6 +5,7 @@ import {
   registerPres,
   getPrestamos,
   getPresUser,
+  ganancias
 } from "../controller/auth.controller.js";
 
 const router = Router();
@@ -14,5 +15,6 @@ router.post("/register", registerUser);
 router.post("/registerPres", registerPres);
 router.post("/getPrestamos", getPrestamos);
 router.post("/getPresUser", getPresUser);
+router.post("/ganancias", ganancias);
 
 export default router;

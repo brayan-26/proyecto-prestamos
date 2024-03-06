@@ -47,7 +47,7 @@ export async function obtenerPres() {
   try {
     const sql = "SELECT * FROM prestamos";
     const results = await connection.promise().query(sql);
-    return results;
+    return results[0];
   } catch (error) {
     console.log(error);
   }
@@ -62,3 +62,5 @@ export async function obtenerPresUser(cedula) {
     console.log(error);
   }
 }
+
+
