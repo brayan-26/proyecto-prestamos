@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate , Link} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function RegisterUser() {
   const { register, handleSubmit } = useForm();
@@ -24,33 +24,42 @@ function RegisterUser() {
   });
   return (
     <div className="register-user-container">
-    <form className="register-user-form" onSubmit={onSubmit}>
-      <input
-        className="register-user-input"
-        type="number"
-        autoComplete="off"
-        {...register("cedula", { required: true })}
-        placeholder="Cédula"
-      />
-      <input
-        className="register-user-input"
-        type="text"
-        autoComplete="off"
-        {...register("nombre", { required: true })}
-        placeholder="Nombre"
-      />
-      <input
-        className="register-user-input"
-        type="text"
-        {...register("apellido", { required: true })}
-        placeholder="Apellido"
-      />
-      <button className="register-user-button" type="submit">Registrar Usuario</button>
-    </form>
-    {mensaje && <p className="register-user-message">{mensaje}</p>}
-    <Link to="/registerPrestamos" className="register-user-link">Registrar Préstamos</Link>
-  </div>
-  
+      <form className="register-user-form" onSubmit={onSubmit}>
+        <input
+          className="register-user-input"
+          type="number"
+          autoComplete="off"
+          {...register("cedula", { required: true })}
+          placeholder="Cédula"
+        />
+        <input
+          className="register-user-input"
+          type="text"
+          autoComplete="off"
+          {...register("nombre", { required: true })}
+          placeholder="Nombre"
+        />
+        <input
+          className="register-user-input"
+          type="text"
+          {...register("apellido", { required: true })}
+          placeholder="Apellido"
+        />
+        <button className="register-user-button" type="submit">
+          Registrar Usuario
+        </button>
+      </form>
+      {mensaje && <p className="register-user-message">{mensaje}</p>}
+      <Link to="/registerPrestamos" className="register-user-link">
+        Registrar Préstamos
+      </Link>
+      <Link to="/mostrarPrestamos" className="register-loan-link">
+        Ver todos los préstamos
+      </Link>
+      <Link to="/obtenerCedula" className="register-loan-link">
+        Ver préstamos por cédula
+      </Link>
+    </div>
   );
 }
 

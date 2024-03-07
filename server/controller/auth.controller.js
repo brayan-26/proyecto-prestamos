@@ -7,6 +7,7 @@ import {
   obtenerPresUser,
   obtenerPresTrue,
   actualizarEstado,
+  selectID,
 } from "../models/user.models.js";
 
 export const login = (req, res) => {
@@ -46,29 +47,32 @@ export const registerUser = async (req, res) => {
 
 export const registerPres = async (req, res) => {
   try {
-    const { cedula, monto, fechaPago, interes } = req.body;
-    // Obtener la fecha de hoy
-    const fechaPrestamo = new Date();
+    const { cedula, monto, diasAgregar, interes } = req.body;
+    const fechaActual = new Date();
 
-    // Formatear la fecha como una cadena en el formato deseado (por ejemplo, YYYY-MM-DD)
-    const fechaPrestamoFormateada = fechaPrestamo.toISOString().split("T")[0];
-    const total = fechaPrestamo.setDate(fechaPrestamo.getDate() + fechaPago);
-    console.log(fechaPago)
-    
+    const offset = fechaActual.getTimezoneOffset();
+    const fechaToday = new Date(fechaActual.getTime() - offset * 60 * 1000)
+      .toISOString()
+      .split("T")[0];
+
+    const fechaPago = new Date(
+      fechaActual.getTime() + diasAgregar * 24 * 60 * 60 * 1000
+    );
+    const fechaPagoFormateada = fechaPago.toISOString().split("T")[0];
+
     const datos = [
       cedula,
       monto,
-      fechaPrestamoFormateada,
-      total,
+      fechaToday,
+      fechaPagoFormateada,
       true,
       interes,
     ];
-
-    console.log(datos)
+    console.log(datos);
     const resultsNumber = await numberPresta(cedula);
     const number = resultsNumber[0][0].total;
 
-    if (monto <= 20000 || monto >= 20000000) {
+    if (monto < 20000 || monto > 20000000) {
       res.status(401).json({ mensaje: "monto erroneo" });
     } else {
       if (number === 4) {
@@ -94,6 +98,7 @@ export const getPrestamos = async (req, res) => {
     const results = await obtenerPresTrue();
     if (results.length > 0) {
       res.status(200).json({ mensaje: "Todos los prestamos", info: results });
+      console.log(results);
     } else {
       res.status(401).json({ mensaje: "NO hay tiene prestamos" });
     }
@@ -151,9 +156,21 @@ export const ganancias = async (req, res) => {
 
 export const actualizarEsta = async (req, res) => {
   try {
-    const estado = req.body;
-    const results = await actualizarEstado(estado);
-    console.log(results);
+    const { id, estado } = req.body;
+    console.log("id", id)
+    console.log("estado", estado)
+    const resultsID = await selectID(id);
+    if (resultsID.length > 0) {
+      const results = await actualizarEstado(estado, id);
+      console.log(results.length);
+      if (results) {
+        res.status(200).json({ mensaje: `Estado actualizado` });
+      } else {
+        res.status(401).json({ mensaje: "Error al actulizar el prestamo" });
+      }
+    } else {
+      res.status(500).json({ mensaje: "Error interno del server" });
+    }
   } catch (error) {
     console.log(error);
   }

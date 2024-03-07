@@ -63,17 +63,25 @@ export async function obtenerPresTrue() {
   }
 }
 
-export async function actualizarEstado(estado) {
+export async function selectID(id) {
   try {
-    const sql = "UPDATE prestamos SET estado_pago = ? WHERE estado_pago = 1";
-    const results = await connection.promise().query(sql, [estado]);
-    console.log(results)
-    return results
+    const sql = "SELECT * FROM prestamos WHERE id = ?";
+    const results = await connection.promise().query(sql, id);
+    return results[0];
   } catch (error) {
     console.log(error);
   }
 }
 
+export async function actualizarEstado(estado, id) {
+  try {
+    const sql = "UPDATE prestamos SET estado_pago = ? WHERE id = ?";
+    const results = await connection.promise().execute(sql, [estado, id]);
+    return results[0];
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export async function obtenerPresUser(cedula) {
   try {
@@ -84,5 +92,3 @@ export async function obtenerPresUser(cedula) {
     console.log(error);
   }
 }
-
-

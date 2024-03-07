@@ -7,4 +7,5 @@ export const registerPrestamos = (values) => axios.post(`${API}/registerPres`, v
 export const PrestamosUser = (values) => axios.post(`${API}/getPresUser`, values);
 export const PrestamosaAll = () => axios.post(`${API}/getPrestamos`);
 export const ganancias = () => axios.post(`${API}/ganancias`);
+export const actualizar = (values) => axios.post(`${API}/actualizarEstaID`, values);
 

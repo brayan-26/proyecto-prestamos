@@ -17,5 +17,6 @@ router.post("/registerPres", registerPres);
 router.post("/getPrestamos", getPrestamos);
 router.post("/getPresUser", getPresUser);
 router.post("/ganancias", ganancias);
+router.post("/actualizarEstaID", actualizarEsta);
 
 export default router;

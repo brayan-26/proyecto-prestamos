@@ -6,6 +6,7 @@ import {
   PrestamosUser,
   PrestamosaAll,
   ganancias,
+  actualizar,
 } from "../api/auth";
 
 export const AuthContext = createContext();
@@ -110,6 +111,19 @@ export const AuthProvider = ({ children }) => {
       }
     }
   };
+  const actualizarEsta = async (values) => {
+    try {
+      const results = await actualizar(values);
+      return {status : results.status,}
+    } catch (error) {
+      if (error.response) {
+        const { status, data } = error.response;
+        return { statusCode: status, responseData: data };
+      } else {
+        console.log(error);
+      }
+    }
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -119,6 +133,7 @@ export const AuthProvider = ({ children }) => {
         ObtenerCedula,
         ObtenerPresta,
         allganacias,
+        actualizarEsta,
         user,
       }}
     >
